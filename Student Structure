@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+struct Student {
+char *name;
+char *id;
+int credits;
+float gpa;
+} stud[3];
+
+void student3(){
+   int i,n=3;
+printf("Enter student info by name, then id, completed credits, and ending with gpa.\n");
+for(i=0;i<n;i++){
+stud[i].name=(char *)malloc(sizeof(char)*1);
+stud[i].id=(char *)malloc(sizeof(char)*1);
+   scanf("%s %s %d %f",stud[i].name,stud[i].id,&stud[i].credits,&stud[i].gpa);
+   }
+   printf("\nNAME\t\tID\t\tCompleteCredits\t\tgpa\n");
+   for(i=0;i<n;i++)
+   {
+  
+  
+printf("%s\t\t%s\t\t %d\t\t %0.2f\t\t\n",stud[i].name,stud[i].id,stud[i].credits,stud[i].gpa);
+}
+}
+
+
+int main(){
+struct Student student;
+  
+student.name = "Mahmoud houhou";
+student.id ="123456";
+student.credits = 60;
+student.gpa = 4.0;
+  
+printf("\nNAME\t\tID\t\tCompleteCredits\t\tgpa\n");
+  
+printf("%s\t\t%s\t\t %d\t\t %0.2f\t\t\n",student.name,student.id,student.credits,student.gpa);
+
+  
+struct Student student1;
+student1.name=(char *)malloc(sizeof(char)*10);
+student1.id=(char *)malloc(sizeof(char)*10);
+printf("Enter the Student info: by name, id, completed credits, then gpa. \n");
+  
+scanf("%s %s %d %f",student1.name,student1.id,&student1.credits,&student1.gpa);
+printf("\nNAME\t\tID\t\tCompleteCredits\t\tgpa\n");
+  
+printf("%s\t\t%s\t\t %d\t\t %0.2f\t\t\n",student1.name,student1.id,student1.credits,student1.gpa);
+  
+student3();
+return 0;
+}
