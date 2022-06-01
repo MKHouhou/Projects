@@ -1,0 +1,59 @@
+#include<stdio.h>
+double totalHours();
+double payRate();
+double tax(double gross);
+double calculateGross(double total,double rate);
+double netPay(double gross,double t);
+void print(double total,double rate,double gross,double t,double net);
+
+int main()
+{
+double total=totalHours();
+double rate=payRate();
+double gross=calculateGross(total,rate);
+double t=tax(gross);
+double net=netPay(gross,t);
+print(total,rate,gross,t,net);
+return 0;
+	
+	
+	return 0;
+}
+
+double totalHours()
+{
+	double total;
+	printf("Enter total hours worked ");
+	scanf("%lf",&total);
+	return total;
+}
+
+double payRate()
+{
+printf("Enter hourly pay rate: ");
+double rate;
+scanf("%lf",&rate);
+return rate;
+}
+double tax(double gross)
+{
+return 0.22*gross;
+}
+
+double calculateGross(double total,double rate)
+{
+return total*rate;
+}
+double netPay(double gross,double t)
+{
+return gross-t;
+}
+void print(double total,double rate,double gross,double t,double net)
+{
+printf("Total hours worked: %.2f ",total);
+printf("Hourly Rate: %.2f ",rate);
+printf("Gross pay is %.2f ",gross);
+printf("Total taxes are %.2f ",t);
+printf("Net pay is %.2f ",net);
+
+}
