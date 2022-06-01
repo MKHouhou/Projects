@@ -1,0 +1,139 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+#include<string.h>
+void showInstructions();
+int makeBet(int *type, int *z);
+int getBetAmount();
+int spinWheel();
+int figureWinnings(int *number,int *type,int *z,int *amount);
+
+
+int main(){
+   srand(time(0));
+   while(1){
+   
+	
+	int type,z;
+    printf("Time to play roulette\n");
+    showInstructions();
+    makeBet(&type,&z);
+    int amount = getBetAmount();
+    int number = spinWheel();
+    printf("The Roulette wheel number: %d\n",number);
+    int amt_won = figureWinnings(&number,&type,&z,&amount);
+    printf("Amount won by you : %d\n",amt_won);
+    printf("Want to continue(y/n):");
+    char character;
+    scanf(" %c",&character);
+    if(character == 'z')
+           break;
+	
+	
+	
+	
+}
+}
+
+
+void showInstructions(){
+	printf("The roullete wheel has numbers 0-36 on the wheel, you can make a bet three different ways.\n");
+	printf("1. Bet on a number(36 times payout)\n");
+	printf("2. Bet odd or even(2 times payout)\n");
+	printf("3. Bet on a dozen(3 times payout). first is 1-12, 2nd is 13-24, third is 25-36 for the dozens.\n");
+	printf("The number zero does not count for odd or even or dozen, but can count as a number bet.\n");
+}
+
+int makeBet(int *type,int *z)
+{
+   while(1)
+   {
+       printf("Enter what type of bet you would like to place(1/2/3):");
+       scanf("%d",type);
+       if(*type == 1)
+       {
+           while(1)
+           {
+               printf("Enter number between 0-36:");
+               scanf("%d",z);
+               if(*z>=0&&*z<=36)
+                   break;
+               else
+               {
+                   printf("Enter correct number\n");
+               }
+           }
+           break;
+       }
+       else if(*type == 2)
+       {
+           while(1)
+           {
+               printf("Enter even or odd (0/1)category:");
+               scanf("%d",z);
+               if(*z == 0 || *z == 1)
+                   break;
+               else
+               {
+                   printf("Enter correct number\n");
+               }
+           }
+           break;
+       }
+       else if(*type == 3)
+       {
+           while(1)
+           {
+               printf("Enter zone number\n1. 0-12 \n 2. 13-24 \n 3. 25-36\n:");
+               scanf("%d",z);
+               if(*z == 1 || *z == 2||*z == 3)
+                   break;
+               else
+               {
+                   printf("Enter correct number\n");
+               }
+           }
+           break;
+       }
+       else
+       {
+           printf("Enter correct number\n");
+       }
+   }
+}
+
+int getBetAmount(){
+	printf("Enter the amount you would like to bet:");
+	int* type;
+	scanf("%d",type);
+	return *type;
+}
+
+int spinWheel()
+{
+   return rand()%37;
+}
+
+int figureWinnings(int *number,int *type,int *z,int *amount){
+	   if(*z == *number)
+       {
+           return 36*(*amount);
+       }
+   
+    else if(*type == 2){
+       if(*number%2 == 0 && *z == 0 || *number%2 == 1 && *z == 1 )
+       {
+           return 2*(*amount);
+       }
+   }
+   else if(*type == 3)
+   {
+       int r = *z;
+       int dice = *number;
+       if(dice <= 12 && dice >0 && r == 1 || dice<=24 && dice > 12 && r == 2 || dice<=36 && dice > 24 && r == 3 )
+       {
+           return 3*(*amount);
+       }
+   }
+   return 0;
+}
