@@ -1,0 +1,71 @@
+#include <stdio.h>
+
+void inputTaxData(float *, float *, float *);
+void calculateTaxes(float , float , float , float *, float *, float *);
+void displayTaxData( float StateTax, float countyTax, float totalTax);
+
+int main()
+{
+	float totalSales, stateTaxRate, countyTaxRate;
+	float stateTax, countyTax, totalTax;
+	
+	inputTaxData(&totalSales, &stateTaxRate, &countyTaxRate);
+	calculateTaxes(totalSales, stateTaxRate, countyTaxRate, &stateTax, &countyTax, &totalTax);
+	displayTaxData(  stateTax,  countyTax, totalTax);
+	
+	
+	
+	
+	
+	return 0;
+}
+
+
+
+void inputTaxData(float *salesPtr, float *statePtr, float *countyPtr)
+{
+
+float totalSales, stateTaxRate, countyTaxRate;
+
+printf("\nEnter the total sales for the month:");
+scanf("%f", &totalSales);
+
+printf("\nEnter the state tax rate: ");
+scanf("%f", &stateTaxRate);
+
+printf("\nEnter the county tax rate: ");
+scanf("%f", &countyTaxRate);
+
+*salesPtr = totalSales;
+*statePtr = stateTaxRate;
+*countyPtr = countyTaxRate;
+
+}
+
+
+void calculateTaxes(float totalSales, float stateTaxRate, float countyTaxRate, float *stPtr, float *ctPtr, float *ttPtr)
+{
+	float stateTax, countyTax, totalTax;
+	
+	stateTax = totalSales * stateTaxRate;
+	
+	countyTax = totalSales * countyTaxRate;
+	
+	totalTax = stateTax + countyTax;
+	
+	*stPtr = stateTax;
+	*ctPtr= countyTax;
+	*ttPtr = totalTax;
+	
+
+	
+}
+
+void displayTaxData( float stateTax, float countyTax, float totalTax)
+{
+	printf("\nState tax due is :	$%6.2f",stateTax);
+	printf("\nCounty tax due is :	$%6.2f",countyTax);
+	printf("\ntotaL tax due is :	$%6.2f",totalTax);
+	
+	
+}
