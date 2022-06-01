@@ -1,0 +1,113 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+char coffeeflavor[5][10]={"House","Iced","Vanilla","Hazelnut","Mocha"};
+char choice[10];
+char size[10];
+char cream[2];
+char sugar[2];
+float cost;
+
+void orderCoffee(){
+	
+printf("Would you like to order small, medium, or a large coffee?\n");
+while(1){
+	scanf("%s", size);
+	if(strcasecmp(size,"small")==0 || strcasecmp(size,"medium")==0 || strcasecmp(size,"large")==0)
+	{
+		break;
+	}else{
+		printf("Invalid choice, please choose small, medium, or large\n");
+	}
+}
+printf("The flavors you can pick are => %s %s %s %s %s\n",coffeeflavor[0],coffeeflavor[1],coffeeflavor[2],coffeeflavor[3],coffeeflavor[4]);
+printf("Which flavor you would like to order?\n");
+while(1){
+	int flag = 0;
+	scanf("%s", choice);
+	for(int i=0;i<5;i++){
+		if(strcasecmp(choice,coffeeflavor[i])==0)
+		{
+			flag=1;
+			break;
+		}
+	}
+	if(flag==1)
+	{
+		break;
+	}
+	else{
+		printf("Invalid choice,please select the correct flavour! (%s ,%s, %s, %s, %s)\n",coffeeflavor[0],coffeeflavor[1],coffeeflavor[2],coffeeflavor[3],coffeeflavor[4]);  
+	}
+}
+printf("Would you like to have cream?(Y/N)\n");
+while(1)
+{
+	scanf("%s",cream);
+if(cream[0]=='Y' || cream[0]=='y' || cream[0]=='N' || cream[0]=='n')
+break;
+else{
+	printf("Invalid choice, please select a correct option(Y/N)\n");
+}
+}
+printf("Would you like to have sugar?(Y/N)\n");
+while(1)
+{
+	scanf("%s",sugar);
+if(sugar[0]=='Y' || sugar[0]=='y' || sugar[0]=='N' || sugar[0]=='n')
+break;
+else{
+		printf("Invalid choice, please select a correct option(Y/N)\n");
+}
+}
+}
+
+void displayOrder(){
+	if(strcasecmp(size,"small")==0)
+	cost = 3.0;
+	else if(strcasecmp(size,"medium")==0)
+	cost=4.5;
+	else
+	cost=6.0;
+	printf("\nYour cofee order:\n");
+	if((cream[0]=='Y' || cream[0]=='y') & (sugar[0]=='Y' || sugar[0]=='y'))
+	printf("\t%s %s coffee with cream and sugar\n",size,choice);
+	else if(cream[0]=='Y' || cream[0]=='y')
+	printf("\t%s %s coffee with cream \n",size,choice);
+	else if(sugar[0]=='Y' || sugar[0]=='y')
+	printf("\t%s %s coffee with sugar\n",size,choice);
+	else
+	printf("\t%s %s coffee \n",size,choice);   
+	printf("\tTota due: $ %.2f\n",cost);
+
+}
+
+
+int main()
+{
+char choice[2];
+int test=0;
+while(1)
+{
+if(test==0)
+printf("Do you want to order cofee?(Y/N)\n");
+scanf("%s",choice);
+if(choice[0]=='Y' || choice[0]=='y' ||choice[0]=='N' || choice[0]=='n')
+{
+test=0;
+if(choice[0]=='Y' || choice[0]=='y')
+{
+orderCoffee();
+displayOrder();
+}
+else
+break;
+}
+else
+{
+printf("Invalid choice please select correct option!(Y/N)");
+test=1;
+}
+}
+}
